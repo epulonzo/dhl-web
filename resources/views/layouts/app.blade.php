@@ -27,13 +27,8 @@
             <aside class="w-72 bg-[#141A25] border-r border-[#2A3441] flex flex-col hidden md:flex">
                 <!-- Logo -->
                 <div class="h-24 flex items-center px-8 border-b border-[#2A3441]">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-[#FFCC00] rounded-lg flex items-center justify-center text-black">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 013 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9zM12 4.15L5.46 7.82l6.54 3.67 6.54-3.67L12 4.15zM4.5 9.81v6.36l6.5 3.65v-6.36l-6.5-3.65zm15 6.36V9.81l-6.5 3.65v6.36l6.5-3.65z"/>
-                            </svg>
-                        </div>
-                        <span class="text-2xl font-black tracking-tight text-white">DHL</span>
+                    <div class="flex items-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg" alt="DHL Logo" class="h-8 rounded-sm shadow-lg">
                     </div>
                 </div>
 
