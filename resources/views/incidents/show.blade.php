@@ -156,13 +156,50 @@
 
                 @if(Auth::user()->role === 'Admin')
                 <div class="mt-8 pt-8 border-t border-[#2A3441]">
-                    <form action="{{ route('incidents.destroy', $incident) }}" method="POST" onsubmit="return confirm('Are you sure?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="w-full text-xs font-black text-red-500/60 uppercase tracking-widest hover:text-red-500 transition-colors">
-                            Delete Record
-                        </button>
-                    </form>
+                    <button type="button" onclick="document.getElementById('delete-modal').classList.remove('hidden')" class="w-full text-xs font-black text-red-500/60 uppercase tracking-widest hover:text-red-500 transition-colors">
+                        Delete Record
+                    </button>
+
+                    <!-- Delete Confirmation Modal -->
+                    <div id="delete-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                            <!-- Background overlay -->
+                            <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="document.getElementById('delete-modal').classList.add('hidden')"></div>
+
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                            <!-- Modal panel -->
+                            <div class="inline-block align-bottom bg-[#1E2635] rounded-3xl text-left overflow-hidden shadow-2xl border border-[#2A3441] transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                                <div class="px-8 pt-8 pb-6">
+                                    <div class="sm:flex sm:items-start">
+                                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-full bg-red-500/10 border border-red-500/20 sm:mx-0 sm:h-12 sm:w-12">
+                                            <svg class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="mt-4 text-center sm:mt-0 sm:ml-6 sm:text-left">
+                                            <h3 class="text-xl leading-6 font-black text-white" id="modal-title">Delete Incident</h3>
+                                            <div class="mt-3">
+                                                <p class="text-sm text-gray-400 font-medium">Are you sure you want to permanently delete this incident record? This action cannot be undone.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-[#141A25] px-8 py-5 sm:flex sm:flex-row-reverse border-t border-[#2A3441]">
+                                    <form action="{{ route('incidents.destroy', $incident) }}" method="POST" class="m-0 sm:ml-3">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="w-full inline-flex justify-center rounded-xl border border-transparent px-6 py-3 bg-red-500 text-base font-black text-white shadow-sm hover:bg-red-600 focus:outline-none sm:w-auto sm:text-sm transition-colors">
+                                            Yes, Delete
+                                        </button>
+                                    </form>
+                                    <button type="button" onclick="document.getElementById('delete-modal').classList.add('hidden')" class="mt-3 w-full inline-flex justify-center rounded-xl border border-[#2A3441] px-6 py-3 bg-[#1E2635] text-base font-black text-gray-300 shadow-sm hover:bg-[#2A3441] hover:text-white focus:outline-none sm:mt-0 sm:w-auto sm:text-sm transition-all">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 @endif
             </div>

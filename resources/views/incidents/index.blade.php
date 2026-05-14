@@ -64,7 +64,7 @@
                         <td class="px-8 py-6 whitespace-nowrap text-sm font-black text-[#FFCC00]">{{ $incident->tracking_number ?? 'N/A' }}</td>
                         <td class="px-8 py-6">
                             <div class="text-sm font-bold text-white mb-1">{{ $incident->title }}</div>
-                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-tight">{{ $incident->category }} • {{ $incident->created_at->format('M d, Y') }}</div>
+                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-tight">{{ $incident->category }} • {{ $incident->created_at->timezone('Asia/Kuala_Lumpur')->format('M d, Y, h:i A') }}</div>
                         </td>
                         <td class="px-8 py-6 whitespace-nowrap">
                             <span class="px-4 py-1 text-[10px] font-black uppercase rounded-lg 
