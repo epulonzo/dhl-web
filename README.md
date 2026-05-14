@@ -12,8 +12,10 @@ Once in the system, AI automatically generates executive summaries, verifies pri
 ## ✨ Key Features
 
 - **Premium Dark Theme UI:** Built from the ground up with custom Tailwind CSS and Alpine.js for a sleek, modern, and highly responsive user experience.
-- **RPA Automation (UiPath):** Seamlessly integrates with Google Drive to automatically read incoming `.txt` reports, extract tracking numbers via Regex, and push payloads directly to the Laravel API.
+- **RPA Automation (UiPath):** Seamlessly integrates with Google Drive to automatically read incoming `.txt` reports, extract tracking numbers via Regex, and push payloads directly to the Laravel API. Includes an automated summary email sent to administrators after each run.
+- **Smart Data Synchronization:** The API intelligently handles incoming data, distinguishing between brand-new incidents, updates to existing ones, and exact duplicates to ensure data integrity.
 - **AI Intelligence (Groq / Llama 3.3):** Automatically analyzes incident descriptions to generate executive summaries, sentiment analysis, and smart priority/category verifications.
+- **Automatic Summary Reporting:** After execution, the system sends a comprehensive summary email to administrators detailing the totals for incidents created, updated, duplicates, and any failures, with full logs attached.
 - **Role-Based Access Control:** Distinct views and permissions for `Admin` (full access, delete rights) and `Support Staff` (view-only workflow).
 - **Timezone Aware:** Fully configured to process and display all incidents in Malaysia Standard Time (`Asia/Kuala_Lumpur`).
 
@@ -21,7 +23,7 @@ Once in the system, AI automatically generates executive summaries, verifies pri
 
 * **Backend:** Laravel 12 (PHP)
 * **Frontend:** Blade Templates, Tailwind CSS, Alpine.js
-* **Automation:** UiPath Studio, Google Drive API
+* **Automation:** UiPath Studio, Google Drive API, SMTP/Outlook Mail
 * **Database:** MySQL / SQLite
 * **AI:** Groq API (Llama 3.3 model)
 
@@ -60,9 +62,10 @@ Once in the system, AI automatically generates executive summaries, verifies pri
 2. Open `Main.xaml`.
 3. Inside the **Find Files and Folders** activity, ensure your specific Google Drive Folder ID is configured:
    `"'YOUR_FOLDER_ID' in parents and name contains '.txt' and trashed=false"`
-4. Ensure the **POST to Laravel API** activity is pointing to:
+4. Configure the **Send SMTP Mail Message** activity with your administrator's email and your SMTP credentials (e.g., Gmail App Password).
+5. Ensure the **POST to Laravel API** activity is pointing to:
    `http://127.0.0.1:8000/api/incidents/store`
-5. Run the bot. The bot will automatically clean up processed files (moving them to the trash in Google Drive and deleting local temporary files) to prevent duplicates. https://drive.google.com/drive/folders/1PI1nhHhbufF_HLM4atvADxI1UNzhJwEj?usp=drive_link 
+6. Run the bot. The bot will automatically clean up processed files (moving them to the trash in Google Drive and deleting local temporary files) to prevent duplicates and send a completion summary email.
 
 ## 🤝 Contributing
 Developed for the **DHL APSSC Digital Automation Challenge 2026**.
